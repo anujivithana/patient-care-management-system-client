@@ -1,0 +1,13 @@
+.bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;  /* Changed to cover for responsiveness */
+}
+
+@media (min-width: 1025px) {
+    .h-custom-2 {
+    height: 100vh;  /* Changed to vh for full viewport height on larger screens */
+    }
+}

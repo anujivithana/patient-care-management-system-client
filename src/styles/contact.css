@@ -1,0 +1,54 @@
+@import url(app.css);
+
+.contact-container {
+    flex-direction: column;
+    gap: 2rem;
+    width: 40%;
+  }
+  
+  
+  /* .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .title {
+    font-size: 14px;
+    color: #888;
+  } */
+  
+  .contact-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height:60vh; /* Set height to 100% of viewport height */
+  }
+  
+  
+  
+  .apply-doctor {
+    height: 90vh;
+  }
+@media (max-width: 1000px) {
+  .contact-container {
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-container {
+    width: 60%;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-container {
+    width: 70%;
+  }
+}
