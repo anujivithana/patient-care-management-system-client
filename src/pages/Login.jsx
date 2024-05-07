@@ -1,51 +1,148 @@
-import React from 'react';
 import "../styles/login.css";
 import image from "../images/loginimg.jpg";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-export default function Login() {
+
+
+const defaultTheme = createTheme();
+
+export default function SignInSide() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
+
   return (
-    <section className="vh-100">
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-sm-6 text-black">
-            <div className="px-5 ms-xl-4">
-              <i className="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style={{ color: '#709085' }}></i>
-              <span className="h1 fw-bold mb-0">Palliative Care Center</span>
-            </div>
+    <>
+      <ThemeProvider theme={defaultTheme}>
+        <Grid container component="main" sx={{ height: "100vh" }}>
+          <CssBaseline />
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+              backgroundImage: `url(${image})`, // Set the image URL as background
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              
+            }}
+          />
+         <Grid
+  item
+  xs={12}
+  sm={8}
+  md={5}
+  component={Paper}
+  elevation={6}
+  square
+  sx={{
+    backgroundColor: "var(--light-red)",
+  }}
+>
 
-            <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-              <form style={{ width: '23rem' }}>
-                <h3 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>Log in</h3>
-                <div data-mdb-input-init className="form-outline mb-4">
-                  <input type="text" id="form2Example18" className="form-control form-control-lg" placeholder="NIC number"/>
-                  {/* <label className="form-label" htmlFor="form2Example18">Email address</label> */}
-                </div>
-                <div data-mdb-input-init className="form-outline mb-4">
-                  <input type="password" id="form2Example28" className="form-control form-control-lg" placeholder="Password"/>
-                  {/* <label className="form-label" htmlFor="form2Example28">Password</label> */}
-                </div>
-                <div className="pt-1 mb-4">
-                  <button data-mdb-button-init data-mdb-ripple-init className="btn btn-info btn-lg btn-block" type="button">Login</button>
-                </div>
-                <p className="small mb-5 pb-lg-2"><a className="text-muted" href="#!">Forgot password?</a></p>
-                <p>Don't have an account? <a href="http://localhost:3000/register" className="link-info">Register here</a></p>
-              </form>
-            </div>
-          </div>
-          <div className="col-sm-6 px-0 d-none d-sm-block">
-            <img src={image} alt="Login image" className="w-100 vh-100" style={{ objectFit: 'cover', objectPosition: 'left' }} />
-          </div>
-        </div>
-      </div>
-      <a href="http://localhost:3000/appointmentsp" className="link-info">patients page after login (temperary)</a>
-      <div className="contact-div" style={{display:'flex',justifyContent:'center'}}>
-        <Contact />
-      </div>
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 1 }}
+              >
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
 
-      <Footer />
-    </section>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={() => { window.location.href = "/patient/profile"; }}
+                >
+                 Patient
+                </Button>
+
+
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
+                </Grid>
+                {/* <Copyright sx={{ mt: 5 }} /> */}
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
+    </>
   );
 }
-

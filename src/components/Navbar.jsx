@@ -85,9 +85,9 @@ const Navbar = () => {
               <li>
                 <NavLink
                   className="btn"
-                  to={"/guidelines"}
+                  to={"/"}
                 >
-                  Make Appointment
+                  Logout
                 </NavLink>
               </li>
             </>
