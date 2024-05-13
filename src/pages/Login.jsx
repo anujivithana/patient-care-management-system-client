@@ -14,21 +14,31 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import axios from "axios";
 
 
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const loginData = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    axios.post("/patient-login", loginData)
+      .then((response) => {
+        console.log(response.data);
+        // Redirect to the patient profile
+        window.location.href = "/patient/profile";
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle login error, e.g. display error message
+      });
   };
-
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -114,7 +124,7 @@ export default function SignInSide() {
                   Sign In
                 </Button>
 
-                <Button
+                {/* <Button
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -122,7 +132,7 @@ export default function SignInSide() {
                   onClick={() => { window.location.href = "/patient/profile"; }}
                 >
                  Patient
-                </Button>
+                </Button> */}
 
 
                 <Grid container>

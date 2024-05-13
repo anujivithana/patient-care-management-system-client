@@ -17,6 +17,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppStore } from '../AppStore';
 
+
+
 const AppBar = styled(MuiAppBar, {
 })(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -166,7 +168,7 @@ export default function TopNavbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed"  elevation = {0} sx={{ color: "black",width: "100%", backgroundColor: "orange" }}>
+      <AppBar position="fixed"  elevation = {0} sx={{ color: "black",width: "100%", backgroundColor: "#a482c2" }}>
         <Toolbar>
           <IconButton
             size="large"
