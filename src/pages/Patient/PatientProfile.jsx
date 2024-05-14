@@ -37,7 +37,7 @@ const rows = [
 ];
 
 
-
+//const[auth, setAuth]= useState(false)
 
 export default function PatientProfile() {
   return (

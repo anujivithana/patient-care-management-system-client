@@ -16,6 +16,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../AppStore';
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -75,6 +76,19 @@ export default function LeftNavbarNurse() {
   const open = useAppStore((state) => state.dopen);
 
   const navigate = useNavigate();
+
+  const handleLogout =() =>{
+    axios.get('http://localhost:5000/logout')
+    .then(res =>{
+      if(res.data.Message ==="Success"){
+         //window.location.href = '/'; 
+      }else{
+        //alert("err");
+        window.location.href = '/';
+      }
+      
+    }).catch(err =>console.log(err))
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>    
@@ -191,7 +205,7 @@ export default function LeftNavbarNurse() {
               </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate("/")}>
+          <ListItem disablePadding sx={{ display: 'block' }} onClick={handleLogout}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

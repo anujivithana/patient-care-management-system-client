@@ -1,6 +1,6 @@
 import "../styles/login.css";
 import image from "../images/loginimg.jpg";
-import * as React from "react";
+import React, {useState} from 'react';
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,30 +15,51 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const loginData = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
-    axios.post("/patient-login", loginData)
-      .then((response) => {
-        console.log(response.data);
-        // Redirect to the patient profile
-        window.location.href = "/patient/profile";
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle login error, e.g. display error message
-      });
+  const [values, setValues] = useState({
+    email: '',
+    password: ''
+  });
+  
+  const navigate= useNavigate()
+
+
+  axios.defaults.withCredentials=true;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/login', values)
+    .then (res => {
+      if (res.data.Status==="Successful Login"){
+         navigate ('/patient/profile')
+      }else{
+         alert(res.data.Message)
+      }
+    })
+    .catch(err => console.log(err));
+    // const data = new FormData(e.currentTarget);
+    // const loginData = {
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // };
+    // axios.post("/patient-login", loginData)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     // Redirect to the patient profile
+    //     window.location.href = "/patient/profile";
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //     // Handle login error, e.g. display error message
+    //   });
   };
+
+  
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -100,6 +121,7 @@ export default function SignInSide() {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  onChange={e => setValues({...values, email: e.target.value})}
                 />
                 <TextField
                   margin="normal"
@@ -110,6 +132,7 @@ export default function SignInSide() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  onChange={e => setValues({...values, password: e.target.value})}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
@@ -142,7 +165,7 @@ export default function SignInSide() {
                     </Link>
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link href="/register" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid>

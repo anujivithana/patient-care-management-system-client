@@ -82,14 +82,14 @@ const Navbar = () => {
                   Sign Up
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   className="btn"
                   to={"/"}
                 >
                   Logout
                 </NavLink>
-              </li>
+              </li> */}
             </>
           ) : (
             <li>

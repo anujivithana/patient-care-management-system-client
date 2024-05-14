@@ -65,12 +65,7 @@ export default function App() {
       <Route path='/patient/patientdoctordetails' element={<PatientDoctorDetails/>}></Route>
       <Route path='/patients/patientappointments' element={<PatientAppointments/>}></Route>
       <Route path='/patient/notifications' element={<PatientNotifications/>}></Route>
-      {/* <Route path='/admin' element={<AdminDashboard/>}>
-         <Route path='/dashboard' element={<AdminDashboard/>}></Route>
-         <Route path='/doctor' element={<AdminDoctor/>}></Route>
-         {/* <Route path='nurse' element={<AdminDoctor/>}></Route> */}
-         {/* <Route path='/appointments' element={<AppointmentsS/>}></Route>
-         </Route> */}
+      
       <Route path='/calender' element={<Calender/>}></Route>
     </Routes>
     </BrowserRouter>
