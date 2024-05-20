@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppStore } from '../AppStore';
+import { Link } from 'react-router-dom';
 
 
 
@@ -180,14 +181,11 @@ export default function TopNavbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            PALLIATIVE CARE CENTER
-          </Typography>
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+               PALLIATIVE CARE CENTER
+            </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

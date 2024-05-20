@@ -26,7 +26,8 @@ export default function Register() {
     fullname: '',
     email: '',
     password: '',
-    contactnumber: ''
+    contactnumber: '',
+    // dob: '',
   });
   const [registrationMessage, setRegistrationMessage] = useState('');
 
@@ -147,6 +148,19 @@ export default function Register() {
   helperText="Please enter a 10-digit contact number."
   onChange={(e) => setFormData({ ...formData, contactnumber: e.target.value })}
 />
+{/* <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="dob"
+                label="Date of Birth"
+                type="date"
+                id="dob"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleChange}
+              /> */}
 
                 <Button
                 type="submit"
