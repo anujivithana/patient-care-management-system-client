@@ -38,7 +38,7 @@ const Navbar = () => {
           </li>
           <li>
 
-            <NavLink to={"/stafflogin"}>Staff</NavLink>
+            <NavLink to={"/stafflogin"}>Staff Login</NavLink>
           </li>
           {/* {/* {token && user.isAdmin && (
             <li>
@@ -71,7 +71,7 @@ const Navbar = () => {
                   className="btn"
                   to={"/login"}
                 >
-                  Login
+                  Patient Login
                 </NavLink>
               </li>
               <li>
@@ -79,7 +79,7 @@ const Navbar = () => {
                   className="btn"
                   to={"/register"}
                 >
-                  Sign Up
+                  Patient Sign Up
                 </NavLink>
               </li>
               {/* <li>

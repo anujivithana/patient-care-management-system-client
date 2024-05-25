@@ -163,7 +163,7 @@ export default function LeftNavBarAdmin() {
                 >
                 <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Appointments" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Place Appointment" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
           </ListItem>
 
@@ -217,11 +217,11 @@ export default function LeftNavBarAdmin() {
 
 
 
-
+          <Divider />
 
         </List>
-        <Divider />
-        <List>
+        
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -244,7 +244,7 @@ export default function LeftNavBarAdmin() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </Box>
   );

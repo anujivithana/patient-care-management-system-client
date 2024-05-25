@@ -1,70 +1,153 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NurseLeftNavbar from '../../components/LeftNavBarNurse';
 import TopNavbar from '../../components/TopNavbar';
 import Box from "@mui/material/Box";
-import { DataGrid } from '@mui/x-data-grid';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
+import DateTimePicker from 'react-datetime-picker';
 
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-  },
+// Sample data
+const appointments = [
+  { id: 1, name: 'John Doe', doctor: 'Dr. Smith', status: 'Pending' },
+  { id: 2, name: 'Jane Smith', doctor: 'Dr. Johnson', status: 'Pending' },
+  // Add more appointment objects here
 ];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  // { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  // { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  // { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  // { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  // { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 }, 
-  // { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
-
-
 
 export default function NurseRegistration() {
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [bhtNumber, setBhtNumber] = useState('');
+  const [bedNumber, setBedNumber] = useState('');
+  const [roomNumber, setRoomNumber] = useState('');
+  const [nurseId, setNurseId] = useState('');
+  const [admissionDateTime, setAdmissionDateTime] = useState(new Date());
+
+  const navigate = useNavigate();
+
+  const handleAdmitClick = (appointment) => {
+    setSelectedAppointment(appointment);
+  };
+
+  const handleProfileClick = (appointmentId) => {
+    navigate(`/patient/profile/${appointmentId}`);
+  };
+
+  const handleWardDetailsClick = () => {
+    navigate('/nurse/nursewarddetails');
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission logic here
+    console.log(`BHT Number: ${bhtNumber}, Bed Number: ${bedNumber}, Room Number: ${roomNumber}, Nurse ID: ${nurseId}, Admission Date & Time: ${admissionDateTime.toISOString()}`);
+    setSelectedAppointment(null); // Reset after submission
+  };
+
   return (
-    
     <div>
       <TopNavbar />
       <Box height={30} />
       <Box sx={{ display: "flex" }}>
         <NurseLeftNavbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <h1>Registrations</h1>
-          { <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </div> }
+          <h1>Ward Admission Details</h1>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Appointment ID</TableCell>
+                  <TableCell>Patient Name</TableCell>
+                  <TableCell>Doctor Referred</TableCell>
+                  <TableCell>Patient Profile</TableCell>
+                  <TableCell>Admission Status</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {appointments.map((appointment) => (
+                  <TableRow key={appointment.id}>
+                    <TableCell>{appointment.id}</TableCell>
+                    <TableCell>{appointment.name}</TableCell>
+                    <TableCell>{appointment.doctor}</TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="primary" onClick={() => handleProfileClick(appointment.id)}>
+                        View Profile
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="primary" onClick={() => handleAdmitClick(appointment)}>
+                        Admit
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
 
+          {selectedAppointment && (
+            <Box component="form" sx={{ mt: 3 }} onSubmit={handleFormSubmit}>
+              <h2>Admit Patient: {selectedAppointment.name}</h2>
+              <TextField
+                label="BHT Number"
+                value={bhtNumber}
+                onChange={(e) => setBhtNumber(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Bed Number"
+                value={bedNumber}
+                onChange={(e) => setBedNumber(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Room Number"
+                value={roomNumber}
+                onChange={(e) => setRoomNumber(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="Nurse ID"
+                value={nurseId}
+                onChange={(e) => setNurseId(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+              />
+              
+              <div>
+               <label htmlFor="admission-datetime">Admission Date & Time:</label>
+                <DateTimePicker
+                  id="admission-datetime"
+                  value={admissionDateTime}
+                  onChange={(newValue) => setAdmissionDateTime(newValue)}
+                  required
+                />
+               
+              </div>
+
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+              <Button variant="outlined" color="secondary" sx={{ ml: 2 }} onClick={handleWardDetailsClick}>
+                Ward Details
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
-    </div>
-  )
+    </div>
+  );
 }

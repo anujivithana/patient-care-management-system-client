@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLeftNavbar from '../../components/LeftNavBarAdmin';
 import TopNavbar from '../../components/TopNavbar';
 import Box from "@mui/material/Box";
- import Calender from '../../components/Calender';
+import TabsWardDetails from '../../components/TabsWardDetails';
 
 export default function AdminWardDetails() {
   return (
@@ -14,8 +14,7 @@ export default function AdminWardDetails() {
         <AdminLeftNavbar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           <h1>Ward Details</h1>
-           <Calender/> 
-
+          <TabsWardDetails/> 
         </Box>
       </Box>
     </div>

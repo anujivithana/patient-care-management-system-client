@@ -139,7 +139,7 @@ export default function LeftNavbarNurse() {
                 >
                 <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Appointments" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Clinic" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
           </ListItem>
           <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate("/nurse/nurseregistration")}>
@@ -159,7 +159,7 @@ export default function LeftNavbarNurse() {
                 >
                 <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Registration" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Ward Admissions" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
           </ListItem>
           <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate("/nurse/nursesearchpatient")}>
@@ -235,7 +235,7 @@ export default function LeftNavbarNurse() {
 
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -258,7 +258,7 @@ export default function LeftNavbarNurse() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </Box>
   );

@@ -259,7 +259,7 @@ export default function LeftNavBarAdmin() {
 
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
@@ -282,7 +282,7 @@ export default function LeftNavBarAdmin() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </Box>
   );

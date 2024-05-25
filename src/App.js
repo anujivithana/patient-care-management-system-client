@@ -6,7 +6,7 @@ import Register from "./pages/Register";
 import RegisterGuidelines from "./pages/RegisterGuidelines";
 import StaffLogin from "./pages/StaffLogin";
 import AppointmentsS from "./pages/AppointmentsS";
-import Calender from "./pages/Calender";
+// import Calender from "./pages/Calender";
 import Dashboard from "./pages/Admin/Dashboard";
 import DoctorDetails from "./pages/Admin/DoctorDetails";
 import NurseDetails from "./pages/Admin/NurseDetails"
@@ -26,12 +26,14 @@ import PatientProfile from "./pages/Patient/PatientProfile";
 import PatientDoctorDetails from "./pages/Patient/PatientDoctorDetails";
 import PatientAppointments from "./pages/Patient/PatientAppointments";
 import PatientNotifications from "./pages/Patient/PatientNotifications";
+
 // import AdminDashboard from "./pages/AdminDashboard";
 // import AdminDoctor from "./pages/AdminDoctor";
 
 
 export default function App() {
   return (
+    
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home/>}></Route>
@@ -66,7 +68,7 @@ export default function App() {
       <Route path='/patients/patientappointments' element={<PatientAppointments/>}></Route>
       <Route path='/patient/notifications' element={<PatientNotifications/>}></Route>
       
-      <Route path='/calender' element={<Calender/>}></Route>
+      {/* <Route path='/calender' element={<Calender/>}></Route> */}
     </Routes>
     </BrowserRouter>
   )
